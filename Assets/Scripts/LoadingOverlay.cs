@@ -32,6 +32,6 @@ public class LoadingOverlay : MonoBehaviour
             yield return null;
         }
 
-        canvasGroup.alpha = startAlpha;
+        canvasGroup.alpha = targetAlpha;
     }
 }

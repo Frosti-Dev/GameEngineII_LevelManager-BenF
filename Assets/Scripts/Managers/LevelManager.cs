@@ -28,16 +28,43 @@ public class LevelManager : MonoBehaviour
     #region buttons
     public void ToMainMenu()
     {
+        manager
+            .NewTransition()
+            .Load(SceneDataBase.Slots.MainMenu, SceneDataBase.Scenes.MainMenu, setActive: true)
+            .Unload(SceneDataBase.Slots.Session)
+            .Unload(SceneDataBase.Slots.SessionContent)
+            .WithClearUnusedAssets()
+            .WithOverlay()
+            .Perform();
+    }
 
+    public void ToStart()
+    {
+        manager
+            .NewTransition()
+            .Load(SceneDataBase.Slots.Session, SceneDataBase.Scenes.Session)
+            .Load(SceneDataBase.Slots.SessionContent, SceneDataBase.Scenes.Gameplay, setActive: true)
+            .Unload(SceneDataBase.Slots.MainMenu)
+            .WithOverlay()
+            .Perform();
     }
 
     public void ToGameplay()
     {
-
+        manager
+            .NewTransition()
+            .Load(SceneDataBase.Slots.SessionContent, SceneDataBase.Scenes.Gameplay, setActive: true)
+            .WithOverlay()
+            .Perform();
     }
 
     public void ToGameOver()
     {
+        manager
+            .NewTransition()
+            .Load(SceneDataBase.Slots.SessionContent, SceneDataBase.Scenes.GameOver, setActive: true)
+            .WithOverlay()
+            .Perform();
 
     }
 
@@ -56,7 +83,7 @@ public class LevelManager : MonoBehaviour
     {
         if (isBusy)
         {
-            Debug.LogWarning("Scen Change already in progress!");
+            Debug.LogWarning("Scene Change already in progress!");
             return null;
         }
 

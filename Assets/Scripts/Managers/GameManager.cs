@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         LevelManager.manager
             .NewTransition()
